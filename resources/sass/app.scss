@@ -1,0 +1,82 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+// Variables
+@import 'variables';
+
+$font-family-sans-serif: 'font-family: 'Roboto', sans-serif';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+//Bootstrap icon
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+
+.form-control{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #d3d1d1;
+    border-radius: 0;
+    background-color: white;
+}
+.form-control:focus{
+    outline: none;
+}
+.underline{
+    border-bottom: 1px solid #d3d1d1;
+}
+.image{
+    cursor: pointer;
+}
+
+.letter-spacing{
+    letter-spacing: 0.9px;
+}
+
+.btn-rounded{
+    letter-spacing: 0.9px;
+    border-radius: 0px 50px 50px 0px !important;
+}
+
+.show{
+    transition: 0.5s;
+}
+.show:hover{
+    background-color: rgba($black,0.1) !important;
+    cursor: pointer;
+    .show-none{
+        visibility: visible;
+    }
+}
+
+.sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 100px;
+}
+
+.show-none{
+    visibility: hidden;
+}
+
+input:focus{
+    outline: none!important;
+}
+
+.dropdown-menu:hover{
+    background-color: white !important;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
