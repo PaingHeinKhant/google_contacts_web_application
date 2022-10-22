@@ -1,10 +1,11 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap');
 
 // Variables
 @import 'variables';
 
-$font-family-sans-serif: 'font-family: 'Roboto', sans-serif';
+//$font-family-sans-serif: 'font-family: DM Sans';
+$form-check-input-width:1.5em;
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
@@ -49,6 +50,17 @@ $font-family-sans-serif: 'font-family: 'Roboto', sans-serif';
     .show-none{
         visibility: visible;
     }
+    .form{
+        visibility: visible;
+    }
+}
+
+.form:checked{
+    visibility: visible;
+}
+
+.form{
+    visibility: visible;
 }
 
 .sidebar {
@@ -61,12 +73,48 @@ $font-family-sans-serif: 'font-family: 'Roboto', sans-serif';
     visibility: hidden;
 }
 
+.items{
+    position: sticky;
+    top: 85px;
+    z-index: 200;
+    background-color: white;
+}
+
+
+
 input:focus{
     outline: none!important;
 }
 
 .dropdown-menu:hover{
     background-color: white !important;
+}
+
+
+.rand{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid $white;
+    font-weight: 700;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+}
+
+.rand-two{
+    width: 162px;
+    height: 162px;
+    border-radius: 50%;
+    border: 1px solid $white;
+    font-weight: 700;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 70px;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -80,3 +128,10 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
+
+
+
+
+
+
+

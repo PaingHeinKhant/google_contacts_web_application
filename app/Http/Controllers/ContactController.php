@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreContactRequest;
 use App\Http\Requests\UpdateContactRequest;
 use App\Models\Contact;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ContactController extends Controller
 {
@@ -15,7 +17,11 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::paginate(10);
+        $contacts = Contact::when(request('keyword'),function ($q){
+            $keyword= request('keyword');
+            $q->orWhere("firstName","like","%$keyword")
+                ->orWhere("lastName","like","%$keyword");
+        })->paginate(10);
         return view('Contact.index',compact('contacts'));
     }
 
@@ -67,7 +73,7 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        //
+        return view('Contact.show',compact('contact'));
     }
 
     /**
@@ -98,10 +104,20 @@ class ContactController extends Controller
         $contact->birthday = $request->birthday;
         $contact->note = $request->note;
 
-        $contact->save();
+        if($request->hasFile('image')){
 
-        return redirect()->route('contact.index')->with('status', $contact->firstName .' is updated Successfully' );
+            //delete old photo
+            Storage::delete("public/".$contact->image);
 
+            // update and upload new photo
+            $newName = uniqid()."_image.".$request->file('image')->extension();
+            $request->file('image')->storeAs("public",$newName);
+            $contact->image = $newName;
+
+        }
+        $contact->update();
+
+        return redirect()->route('contact.index');
     }
 
     /**
@@ -116,6 +132,11 @@ class ContactController extends Controller
         $contact->delete();
         return redirect()->route('contact.index')->with('status', $contact->firstName .' is deleted Successfully' );
 
+    }
+
+    public function multipleDestroy(Request $request){
+        Contact::destroy(collect($request->multipleFormCheck));
+        return redirect()->route('contact.index');
     }
 
 }

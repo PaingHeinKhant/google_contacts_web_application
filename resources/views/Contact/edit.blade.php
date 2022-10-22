@@ -1,10 +1,11 @@
 @extends('layouts.app')
 @section('content')
 
+
     <div class="container-fluid">
         <div class="row">
 
-                <div class="">
+                <div class="mb-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('contact.index') }}">Contacts</a></li>
@@ -13,7 +14,7 @@
                     </nav>
                 </div>
 
-                <form action="{{ route('contact.update',$contact->id) }}" method="post">
+                <form action="{{ route('contact.update',$contact->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('put')
 
@@ -31,7 +32,7 @@
                                <input type="file" name="image" id="fileInput" class="" hidden>
                            </div>
                            <div class="d-flex align-items-end mb-3">
-                               <button type="submit" class="btn btn-primary me-3">Update</button>
+
                                <a href="{{ route('contact.index') }}" class="btn btn-secondary ">Cancel</a>
                            </div>
                        </div>
@@ -104,6 +105,7 @@
                             <label for="floatingInput" class="text-black-50">Note</label>
                         </div>
                     </div>
+                    <button type="submit" class="btn btn-primary me-3">Update</button>
                 </form>
         </div>
     </div>

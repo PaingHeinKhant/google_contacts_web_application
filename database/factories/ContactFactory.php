@@ -21,7 +21,8 @@ class ContactFactory extends Factory
             "lastName" => $this->faker->lastName,
             "email" => $this->faker->email,
             "phone" => $this->faker->phoneNumber,
-            "company"=>$this->faker->company
+            "birthday" => $this->faker->date('Y-m-d'),
+            "company"=>$this->faker->company,
         ];
     }
 }

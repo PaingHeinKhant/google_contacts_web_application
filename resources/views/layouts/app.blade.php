@@ -46,6 +46,10 @@
         @if(session('status'))
         showToast("{{ session("status") }}")
         @endif
+
+        @if(session('statusDelete'))
+        showDelete("{{ session("statusDelete") }}")
+        @endif
     </script>
 </body>
 </html>
