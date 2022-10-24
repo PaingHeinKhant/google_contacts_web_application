@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ExportContact;
 use App\Http\Requests\StoreContactRequest;
 use App\Http\Requests\UpdateContactRequest;
+use App\Imports\ImportContact;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ContactController extends Controller
 {
@@ -21,7 +25,9 @@ class ContactController extends Controller
             $keyword= request('keyword');
             $q->orWhere("firstName","like","%$keyword")
                 ->orWhere("lastName","like","%$keyword");
-        })->paginate(10);
+        })
+            ->where("user_id",Auth::id())
+            ->paginate(10);
         return view('Contact.index',compact('contacts'));
     }
 
@@ -43,6 +49,7 @@ class ContactController extends Controller
      */
     public function store(StoreContactRequest $request)
     {
+//        return $request;
 
         $contact = new Contact();
 
@@ -53,6 +60,7 @@ class ContactController extends Controller
         $contact->phone = $request->phone;
         $contact->birthday = $request->birthday;
         $contact->note = $request->note;
+        $contact->user_id = Auth::id();
 
         if($request->hasFile('image')) {
             $newName = uniqid() . "_image." . $request->file('image')->getextension();
@@ -65,7 +73,7 @@ class ContactController extends Controller
         return redirect()->route('contact.index')->with('status', $contact->firstName .' is added Successfully' );
     }
 
-    /**
+    /**l
      * Display the specified resource.
      *
      * @param  \App\Models\Contact  $contact
@@ -96,6 +104,8 @@ class ContactController extends Controller
      */
     public function update(UpdateContactRequest $request, Contact $contact)
     {
+
+//        return $request;
         $contact->firstName = $request->firstName;
         $contact->lastName = $request->lastName;
         $contact->company = $request->company;
@@ -103,6 +113,7 @@ class ContactController extends Controller
         $contact->phone = $request->phone;
         $contact->birthday = $request->birthday;
         $contact->note = $request->note;
+        $contact->user_id = Auth::id();
 
         if($request->hasFile('image')){
 
@@ -117,7 +128,7 @@ class ContactController extends Controller
         }
         $contact->update();
 
-        return redirect()->route('contact.index');
+        return redirect()->route('contact.index')->with('status', $contact->firstName .' is updated Successfully' );
     }
 
     /**
@@ -137,6 +148,21 @@ class ContactController extends Controller
     public function multipleDestroy(Request $request){
         Contact::destroy(collect($request->multipleFormCheck));
         return redirect()->route('contact.index');
+    }
+
+    public function importView(Request $request){
+        return view('importFile');
+    }
+
+    public function import(Request $request){
+//        return $request;
+        Excel::import(new ImportContact,
+            $request->file('file')->store('files'));
+        return redirect()->back();
+    }
+
+    public function exportContacts(Request $request){
+        return Excel::download(new ExportContact, 'users.xlsx');
     }
 
 }

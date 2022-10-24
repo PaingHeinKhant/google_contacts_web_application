@@ -96,6 +96,19 @@
                                             <i class="bi bi-pencil text-black"></i>
                                         </a>
 
+{{--                                        <form action="{{ route('import') }}"--}}
+{{--                                              method="POST"--}}
+{{--                                              enctype="multipart/form-data">--}}
+{{--                                            @csrf--}}
+{{--                                            <input type="file" name="file"--}}
+{{--                                                   class="form-control">--}}
+{{--                                            <br>--}}
+{{--                                            <button class="btn btn-success">--}}
+{{--                                                Import User Data--}}
+{{--                                            </button>--}}
+
+{{--                                        </form>--}}
+
                                         <div class="dropdown">
                                             <a  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="bi bi-three-dots-vertical fs-5 text-black"></i>
@@ -106,7 +119,7 @@
                                                     <i class="bi bi-printer fs-6 me-1"></i>
                                                     <span class="my-1">Print</span>
                                                 </a>
-                                                <a class="list-group-item list-group-item-action border-0 rounded py-1 px-2  show ps-3 mb-3" href="">
+                                                <a class="list-group-item list-group-item-action border-0 rounded py-1 px-2  show ps-3 mb-3" href="{{ route('export-contacts') }}">
                                                     <i class="bi bi-cloud-arrow-down fs-6 me-1"></i>
                                                     <span class="my-1">Export</span>
                                                 </a>

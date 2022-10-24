@@ -8,20 +8,23 @@
                </div>
                <h3>Contacts Web Application</h3>
            </a>
-
        </div>
-       <div class="col-7">
+
+       <div class="col-5">
+           @auth
            <form class="form d-flex" action="{{ route('contact.index') }}" method="get">
                <input class="form-control w-50 me-5"  name="keyword" value="{{request('keyword')}}" type="search" placeholder="Search"  required/>
                <button class="btn btn-primary">Search</button>
            </form>
+           @endauth
        </div>
-       <div class="col-2 ">
-           <div class="me-5 pe-5" id="navbarSupportedContent">
+
+       <div class="col-4 ">
+           <div class="me-5 pe-5 d-flex" id="navbarSupportedContent">
                <!-- Left Side Of Navbar -->
-               {{--        <ul class="navbar-nav me-auto">--}}
-               {{--            --}}
-               {{--        </ul>--}}
+                       <ul class="navbar-nav me-auto">
+
+                       </ul>
 
 
                <!-- Right Side Of Navbar -->
@@ -30,7 +33,7 @@
                    @guest
                        @if (Route::has('login'))
                            <li class="nav-item">
-                               <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                               <a class="nav-link d-inline-block" href="{{ route('login') }}">{{ __('Login') }}</a>
                            </li>
                        @endif
 

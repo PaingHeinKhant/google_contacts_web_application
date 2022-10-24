@@ -25,7 +25,7 @@ class UpdateContactRequest extends FormRequest
     {
         return [
             "firstName" => "required|min:4",
-            "lastName" => "required|min:4",
+            "lastName" => "required|min:3",
             'phone'=>'required|Numeric',
             'company'=>'nullable',
             'birthday'=>'nullable',

@@ -17,8 +17,18 @@ Route::get('/', function () {
     return redirect()->route('contact.index');
 });
 
+
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('/contact',ContactController::class);
-Route::post('/multipleDestroy',[ContactController::class,'multipleDestroy'])->name('multipleDestroy');
+Route::middleware('auth')->group(function(){
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('/contact',ContactController::class);
+    Route::post('/multipleDestroy',[ContactController::class,'multipleDestroy'])->name('multipleDestroy');
+});
+
+Route::get('/file-import',[ContactController::class,
+    'importView'])->name('import-view');
+Route::post('/import',[ContactController::class,
+    'import'])->name('import');
+Route::get('/export-users',[ContactController::class,
+    'exportContacts'])->name('export-contacts');

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->date('birthday')->nullable();
             $table->longText('note')->nullable();
             $table->timestamps();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
         });
     }
 
