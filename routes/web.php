@@ -24,6 +24,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('/contact',ContactController::class);
     Route::post('/multipleDestroy',[ContactController::class,'multipleDestroy'])->name('multipleDestroy');
+    Route::post('/task/{duplicate_id}/clone',[ContactController::class,'duplicate'])->name('duplicate.clone');
+    Route::post('/multipleDuplicate',[ContactController::class,'multipleDuplicate'])->name('multipleDuplicate');
 });
 
 Route::get('/file-import',[ContactController::class,

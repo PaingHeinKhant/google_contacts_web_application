@@ -37,6 +37,11 @@
                                             <span class=" my-1">Hide From Contact</span>
                                         </a>
 
+                                            <button class=" list-group-item list-group-item-action border-0 rounded py-1 px-2  show ps-3 mb-3" form="multipleFormCheck">
+                                                <i class="bi bi-menu-button-wide-fill fs-6 me-1"></i>
+                                                <span class="my-1" >Duplicate</span>
+                                            </button>
+
                                         <button class="list-group-item list-group-item-action border-0 rounded py-1 px-2  show ps-3 mb-3" form="multipleFormCheck">
                                             <i class="bi bi-trash fs-6 me-1"></i>
                                             <span class="my-1">Delete</span>
@@ -66,9 +71,11 @@
                                 <tr class="show" >
                                     <td class="d-flex align-items-center my-1" >
 
+
+
                                         <div class="d-flex align-items-center">
                                             <div class="form-check form me-3 ">
-                                                <input class="form-check-input "  type="checkbox" name="multipleFormCheck[]"  form='multipleFormCheck' value="{{ $contact->id }}" id="formName{{$contact->id}}">
+                                                <input class="form-check-input"  type="checkbox" name="multipleFormCheck[]"  form='multipleFormCheck' value="{{ $contact->id }}" id="formName{{$contact->id}}">
                                             </div>
 
                                             <div class="me-4 show-inverse">
@@ -127,6 +134,14 @@
                                                     <i class="bi bi-archive fs-6 me-1"></i>
                                                     <span class=" my-1">Hide From Contact</span>
                                                 </a>
+
+                                                <form class="d-block" method="post"  action="{{ route('duplicate.clone',$contact->id) }}">
+                                                    @csrf
+                                                    <button type="submit" title="Delete"  class=" list-group-item list-group-item-action border-0 rounded py-1 px-2  show ps-3 mb-3">
+                                                        <i class="bi bi-menu-button-wide-fill fs-6 me-1"></i>
+                                                        <span class="my-1" >Duplicate</span>
+                                                    </button>
+                                                </form>
 
                                                 <form class="d-block" method="POST"  action="{{ route('contact.destroy',$contact->id) }}">
                                                     @csrf

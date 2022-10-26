@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use App\Models\Photo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ContactApiController extends Controller
 {
@@ -15,7 +16,9 @@ class ContactApiController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::latest("id")->paginate(10);
+        $contacts = Contact::latest("id")
+            ->where("user_id",Auth::id())
+            ->paginate(10);
         return response()->json($contacts);
     }
 

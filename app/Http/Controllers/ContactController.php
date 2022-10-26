@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateContactRequest;
 use App\Imports\ImportContact;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
@@ -142,11 +143,34 @@ class ContactController extends Controller
 //        return $contact;
         $contact->delete();
         return redirect()->route('contact.index')->with('status', $contact->firstName .' is deleted Successfully' );
-
     }
 
     public function multipleDestroy(Request $request){
+//        return $request;
         Contact::destroy(collect($request->multipleFormCheck));
+        return redirect()->route('contact.index');
+    }
+
+    public function duplicate($duplicate_id){
+
+        $task = Contact::findOrFail($duplicate_id);
+        $new_task = $task->replicate();
+        $new_task->created_at = Carbon::now();
+        $new_task->save();
+
+        return redirect()->route('contact.index')->with('status', $new_task->firstName .' is Duplicate Successfully' );
+    }
+
+    public function multipleDuplicate(Request $request){
+
+//        return $request;
+        $contacts = Contact::whereIn('id',$request->multipleFormCheck)->get();
+        foreach ($contacts as $contact){
+            $new_task = $contact->replicate();
+            $new_task->created_at = Carbon::now();
+            $new_task->save();
+        }
+
         return redirect()->route('contact.index');
     }
 
