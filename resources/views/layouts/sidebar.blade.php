@@ -15,9 +15,9 @@
             <i class="bi bi-arrow-counterclockwise fs-4 me-3"></i>
             <span class="h6 my-1">Frequently contacted</span>
         </a>
-        <a class="list-group-item list-group-item-action border-0 rounded btn-rounded ps-5 mb-3" href="">
-            <i class="bi bi-bookmark-star fs-4 me-3"></i>
-            <span class="h6 my-1">Merge & fix</span>
+        <a class="list-group-item list-group-item-action border-0 rounded btn-rounded ps-5 mb-3" href="{{ route('store.index') }}">
+            <i class="bi bi-box fs-4 me-3"></i>
+            <span class="h6 my-1">Inbox Contact</span>
         </a>
     </div>
 

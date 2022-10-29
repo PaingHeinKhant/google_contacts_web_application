@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
     use HasFactory;
-    protected $fillable =['firstName','lastName','company','email','phone','birthday'];
+    protected $fillable =['firstName','lastName','company','email','phone','birthday','user_id'];
     protected $with = ['photos'];
 
     public function photos(){

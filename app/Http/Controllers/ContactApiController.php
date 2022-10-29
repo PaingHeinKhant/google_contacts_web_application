@@ -17,7 +17,7 @@ class ContactApiController extends Controller
     public function index()
     {
         $contacts = Contact::latest("id")
-            ->where("user_id",Auth::id())
+//            ->where("user_id",Auth::id())
             ->paginate(10);
         return response()->json($contacts);
     }
@@ -31,6 +31,8 @@ class ContactApiController extends Controller
     public function store(Request $request)
     {
 
+//        return  Auth::user();
+
         $request->validate([
             "firstName" => "required|min:4",
             "lastName" => "required|min:3",
@@ -42,6 +44,9 @@ class ContactApiController extends Controller
             "photos.*" => "file|mimes:jpeg,png|max:512"
         ]);
 
+//        return "hello";
+
+//        return Auth::id();
 
         $contact = Contact::create([
             "firstName" => $request->firstName,
@@ -50,7 +55,7 @@ class ContactApiController extends Controller
             'company'=>$request->company,
             'birthday'=>$request->birthday,
             'email' => $request->email,
-//            'user_id' => $request->user_id,
+            'user_id' => 3,
         ]);
 
         $photos = [];
@@ -147,5 +152,13 @@ class ContactApiController extends Controller
 
         $contact->delete();
         return response()->json(['message'=>'Contact is deleted'],204);
+    }
+
+    public function multipleDestroy(Request $request){
+//        return "hello";
+        $arr = json_decode($request->multipleFormCheck,true);
+//        return $arr;
+        Contact::destroy(collect($arr));
+        return response()->json(['message'=>'multiple delete is success'],204);
     }
 }

@@ -80,6 +80,8 @@ window.handleClick = function (arg){
 let multipleFormCheck =document.getElementById('multipleFormCheck');
 let dublicate =document.getElementById('dublicate');
 
-dublicate.addEventListener("click", function (){
-    multipleFormCheck.setAttribute('action','http://127.0.0.1:8000/multipleDuplicate')
-})
+
+    dublicate.addEventListener("click", function (){
+        multipleFormCheck.setAttribute('action','http://127.0.0.1:8000/multipleDuplicate')
+    })
+
