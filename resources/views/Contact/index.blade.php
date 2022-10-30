@@ -27,17 +27,17 @@
                                             <i class="bi bi-printer fs-6 me-1"></i>
                                             <span class="my-1">Print</span>
                                         </a>
-                                        <a class="list-group-item list-group-item-action border-0 rounded py-1 px-2  show ps-3 mb-3" href="">
+                                        <button class="list-group-item list-group-item-action border-0 rounded py-1 px-2  show ps-3 mb-3"  id="exportContact" form="multipleFormCheck">
                                             <i class="bi bi-cloud-arrow-down fs-6 me-1"></i>
                                             <span class="my-1">Export</span>
-                                        </a>
+                                        </button>
                                         <a class="list-group-item list-group-item-action border-0 rounded py-1 px-2 show ps-3 mb-3" href="">
                                             <i class="bi bi-archive fs-6 me-1"></i>
                                             <span class=" my-1">Hide From Contact</span>
                                         </a>
 
-                                        <button class=" list-group-item list-group-item-action border-0 rounded py-1 px-2  show ps-3 mb-3" form="multipleFormCheck">
-                                            <i class="bi bi-menu-button-wide-fill fs-6 me-1"></i>
+                                        <button class=" list-group-item list-group-item-action border-0 rounded py-1 px-2  show ps-3 mb-3" id="dublicate" form="multipleFormCheck">
+                                            <i class="bi bi-files fs-6 me-1"></i>
                                             <span class="my-1" >Duplicate</span>
                                         </button>
 
@@ -73,7 +73,7 @@
                                                 @if(isset($contact->image))
                                                     <img src="{{ asset("storage/".$contact->image) }}" width="36px" height="36px" id="inputImageFile" class="rounded rounded-circle " alt="">
                                                 @else
-                                                    <div class="rand" style="background:{{\App\Models\Contact::randBackgroundColor()}} ">{{ \Illuminate\Support\Str::substr($contact->firstName, 0, 1) }}</div>
+                                                    <div class="rand" style="background:{{\App\Models\Contact::randBackgroundColor()}} ">{{ \Illuminate\Support\Str::substr(ucfirst($contact->firstName),0, 1) }}</div>
                                                 @endif
                                             </div>
                                             <label onClick=handleClick("{{route('contact.show',$contact->id)}}")>{{ ucfirst($contact->firstName) }}  {{ ucfirst($contact->lastName) }}</label>
@@ -118,10 +118,15 @@
                                                     <i class="bi bi-printer fs-6 me-1"></i>
                                                     <span class="my-1">Print</span>
                                                 </a>
-                                                <a class="list-group-item list-group-item-action border-0 rounded py-1 px-2  show ps-3 mb-3" href="{{ route('export-contacts') }}">
-                                                    <i class="bi bi-cloud-arrow-down fs-6 me-1"></i>
-                                                    <span class="my-1">Export</span>
-                                                </a>
+
+                                                <form class="d-block" method="post"  action="{{ route('export.excel',$contact->id) }}">
+                                                    @csrf
+                                                    <button type="submit" title="export"  class=" list-group-item list-group-item-action border-0 rounded py-1 px-2  show ps-3 mb-3">
+                                                        <i class="bi bi-cloud-arrow-down fs-6 me-1"></i>
+                                                        <span class="my-1">Export</span>
+                                                    </button>
+                                                </form>
+
                                                 <a class="list-group-item list-group-item-action border-0 rounded py-1 px-2 show ps-3 mb-3" href="">
                                                     <i class="bi bi-archive fs-6 me-1"></i>
                                                     <span class=" my-1">Hide From Contact</span>
@@ -136,8 +141,8 @@
 
                                                 <form class="d-block" method="post"  action="{{ route('duplicate.clone',$contact->id) }}">
                                                     @csrf
-                                                    <button type="submit" title="Delete"  class=" list-group-item list-group-item-action border-0 rounded py-1 px-2  show ps-3 mb-3">
-                                                        <i class="bi bi-menu-button-wide-fill fs-6 me-1"></i>
+                                                    <button type="submit" title="Duplicate"  class=" list-group-item list-group-item-action border-0 rounded py-1 px-2  show ps-3 mb-3">
+                                                        <i class="bi bi-files fs-6 me-1"></i>
                                                         <span class="my-1" >Duplicate</span>
                                                     </button>
                                                 </form>

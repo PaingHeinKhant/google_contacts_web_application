@@ -7,6 +7,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 
 class ExportContact implements FromCollection
 {
+
     /**
     * @return \Illuminate\Support\Collection
     */

@@ -145,48 +145,4 @@ class ContactController extends Controller
         return redirect()->route('contact.index')->with('status', $contact->firstName .' is deleted Successfully' );
     }
 
-    public function multipleDestroy(Request $request){
-//        return $request;
-        Contact::destroy(collect($request->multipleFormCheck));
-        return redirect()->route('contact.index');
-    }
-
-    public function duplicate($duplicate_id){
-
-        $task = Contact::findOrFail($duplicate_id);
-        $new_task = $task->replicate();
-        $new_task->created_at = Carbon::now();
-        $new_task->save();
-
-        return redirect()->route('contact.index')->with('status', $new_task->firstName .' is Duplicate Successfully' );
-    }
-
-    public function multipleDuplicate(Request $request){
-
-//        return $request;
-        $contacts = Contact::whereIn('id',$request->multipleFormCheck)->get();
-        foreach ($contacts as $contact){
-            $new_task = $contact->replicate();
-            $new_task->created_at = Carbon::now();
-            $new_task->save();
-        }
-
-        return redirect()->route('contact.index');
-    }
-
-    public function importView(Request $request){
-        return view('importFile');
-    }
-
-    public function import(Request $request){
-//        return $request;
-        Excel::import(new ImportContact,
-            $request->file('file')->store('files'));
-        return redirect()->back();
-    }
-
-    public function exportContacts(Request $request){
-        return Excel::download(new ExportContact, 'users.xlsx');
-    }
-
 }

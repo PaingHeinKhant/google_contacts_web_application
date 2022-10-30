@@ -21,7 +21,7 @@
                     <tbody>
                     @forelse($stores as $store)
 
-                        {{ json_encode($store->shareContact)  }}
+                        {{ json_encode($store)  }}
 
 {{--                        {{$store["shareContact"]}}--}}
                         <tr class="show" >

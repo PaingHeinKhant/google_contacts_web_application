@@ -77,11 +77,18 @@ window.handleClick = function (arg){
     return window.location.href = arg;
 }
 
+
 let multipleFormCheck =document.getElementById('multipleFormCheck');
 let dublicate =document.getElementById('dublicate');
 
 
-    dublicate.addEventListener("click", function (){
-        multipleFormCheck.setAttribute('action','http://127.0.0.1:8000/multipleDuplicate')
-    })
+dublicate.addEventListener("click", function (){
+    multipleFormCheck.setAttribute('action','http://127.0.0.1:8000/multipleDuplicate')
+})
+
+
+let export_contact = document.getElementById('exportContact');
+export_contact.addEventListener("click",function (){
+    multipleFormCheck.setAttribute('action','http://127.0.0.1:8000/multipleExport')
+})
 
