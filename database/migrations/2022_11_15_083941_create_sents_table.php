@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('stores', function (Blueprint $table) {
+        Schema::create('sents', function (Blueprint $table) {
             $table->id();
-            $table->string('receiveUser');
-            $table->string('sendUser');
-            $table->json('shareContact');
-            $table->enum('Status',['true','false'])->default('false');
+            $table->string('name');
+            $table->string('senderPhone');
+            $table->string('receiverPhone');
+            $table->string('file');
+            $table->string('companyName');
+            $table->integer('sendTime');
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stores');
+        Schema::dropIfExists('sents');
     }
 };

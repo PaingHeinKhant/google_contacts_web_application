@@ -23,9 +23,9 @@ class DatabaseSeeder extends Seeder
 
          \App\Models\User::factory(10)->create();
 
-         $this->call([
-             ContactSeeder::class,
-         ]);
+//         $this->call([
+//             ContactSeeder::class,
+//         ]);
 
 
     }

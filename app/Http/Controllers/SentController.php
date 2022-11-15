@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePhotoRequest;
-use App\Http\Requests\UpdatePhotoRequest;
-use App\Models\Photo;
+use App\Http\Requests\StoreSentRequest;
+use App\Http\Requests\UpdateSentRequest;
+use App\Models\Sent;
 
-class PhotoController extends Controller
+class SentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,8 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        //
+        $sendData = Sent::all();
+        return view('sent.index',compact('sendData'));
     }
 
     /**
@@ -31,10 +32,10 @@ class PhotoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorePhotoRequest  $request
+     * @param  \App\Http\Requests\StoreSentRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePhotoRequest $request)
+    public function store(StoreSentRequest $request)
     {
         //
     }
@@ -42,10 +43,10 @@ class PhotoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Photo  $photo
+     * @param  \App\Models\Sent  $sent
      * @return \Illuminate\Http\Response
      */
-    public function show(Photo $photo)
+    public function show(Sent $sent)
     {
         //
     }
@@ -53,10 +54,10 @@ class PhotoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Photo  $photo
+     * @param  \App\Models\Sent  $sent
      * @return \Illuminate\Http\Response
      */
-    public function edit(Photo $photo)
+    public function edit(Sent $sent)
     {
         //
     }
@@ -64,11 +65,11 @@ class PhotoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePhotoRequest  $request
-     * @param  \App\Models\Photo  $photo
+     * @param  \App\Http\Requests\UpdateSentRequest  $request
+     * @param  \App\Models\Sent  $sent
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePhotoRequest $request, Photo $photo)
+    public function update(UpdateSentRequest $request, Sent $sent)
     {
         //
     }
@@ -76,10 +77,10 @@ class PhotoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Photo  $photo
+     * @param  \App\Models\Sent  $sent
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Photo $photo)
+    public function destroy(Sent $sent)
     {
         //
     }

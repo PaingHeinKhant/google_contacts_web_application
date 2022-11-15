@@ -4,18 +4,18 @@
        <div class="col-3">
            <a class="navbar-brand d-flex align-items-center mx-5" href="{{ url('/') }}">
                <div class="ms-2">
-                   <i class="bi bi-person-fill text-light fs-1 rounded rounded-pill shadow py-1 px-2  bg-primary me-3"></i>
+                   <i class="bi bi-cloud-haze2 fs-1 me-3"></i>
                </div>
-               <h3>Contacts Web Application</h3>
+               <h3>Fax Sms Connection</h3>
            </a>
        </div>
 
        <div class="col-5">
            @auth
-           <form class="form d-flex" action="{{ route('contact.index') }}" method="get">
-               <input class="form-control w-50 me-5"  name="keyword" value="{{request('keyword')}}" type="search" placeholder="Search"  required/>
-               <button class="btn btn-primary">Search</button>
-           </form>
+{{--           <form class="form d-flex" action="{{ route('contact.index') }}" method="get">--}}
+{{--               <input class="form-control w-50 me-5"  name="keyword" value="{{request('keyword')}}" type="search" placeholder="Search"  required/>--}}
+{{--               <button class="btn btn-primary">Search</button>--}}
+{{--           </form>--}}
            @endauth
        </div>
 
